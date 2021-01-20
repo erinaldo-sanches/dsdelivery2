@@ -1,0 +1,19 @@
+import axios from "axios";
+import { OrderPayload } from "./Orders/Types";
+
+const API_URL = process.env.REACT_APP_API_URL;
+//const mapboxToken = process.env.REACT_APP_ACCESS_TOKEN_MAP_BOX;
+
+export function fetchProducts(){
+    return axios(`${API_URL}/products`);
+}
+
+export function fetchLocalMapBox(local: string){
+    //return axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${local}.json?access_token=${mapboxToken}`)
+    //return axios(`https://api.mapbox.com/tokens/v2/erinaldonascimento?access_token=${mapboxToken}`)
+    return axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${local}.json?access_token=pk.eyJ1IjoiZXJpbmFsZG9uYXNjaW1lbnRvIiwiYSI6ImNrazRkNTRyZjFjYngycXBqM2VrajFpNnQifQ.nAGrh1xLYFi03xIrNBvyOg`)
+}
+
+export function saveOrder(payload: OrderPayload){
+    return axios.post(`${API_URL}/orders`, payload);
+}
